@@ -38,9 +38,10 @@ seatCodeMap = {
   '2': 6,
   '1': 7,
   'W': 8,
+  "P": 9
 }
 
-headers = '车次 出发/到达 出发/到达时间 历时 商务 一等 二等 高软 软卧 硬卧 软座 硬座 无座'.split()
+headers = '车次 出发/到达 出发/到达时间 历时 商务 一等 二等 高软 软卧 硬卧 软座 硬座 无座 特等座'.split()
 # 添加颜色
 def colored(color, string):
   return ''.join([getattr(Fore, color.upper()), string, Fore.RESET])
@@ -72,7 +73,7 @@ def createTable(rows):
 
   rows = filter(filterType, rows)
   for row in rows:
-    what = ['--']*9
+    what = ['--'] * len(headers[4:])
     for seat in row['seatList']:
       position = seatCodeMap[seat['seatCode']]
       what[position] = seat['seatNum']
